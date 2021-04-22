@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
 
-# method to find the corresponding character for an intensity level.
-def find_char(ints):  
+# method to find the corresponding character for an intensity level
+# The idea is if the intesity level is high, the character occupies less number of pixels on screen
+def find_char(ints):  # ints is the intensity level of the block
   if(ints<255/9):
     return "#"
   elif(ints<(256*2)/9):
@@ -29,6 +30,7 @@ img_x = 300  # adjust these according to the output size
 img_y = int(350*(img.shape[1]/img.shape[0]))
 img = cv2.resize(img,(img_x, img_y)) 
 
+# In the below loop we are dividing the image into blocks of size 6x3 pixels each
 for i in range(0,int(img.shape[0]/6)):
   line = ""
   for j in range(0,int(img.shape[1]/3)):
